@@ -1,0 +1,64 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment
+.env
+.venv/
+venv/
+env/
+ENV/
+
+# VSCode config
+.vscode/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Output and temporary files
+output/
+*.log
+*.tmp
+*.bak
+
+# Cache or FAISS/DB dump files
+*.faiss
+*.npy
+*.db
+*.pkl
+*.json
+*.csv
+
+# MacOS/Windows system files
+.DS_Store
+Thumbs.db
+
+# Python virtual environment folders
+pip-wheel-metadata/
+build/
+dist/
+
+# PyInstaller artifacts
+*.spec
+
+# LangChain cache or logs (optional)
+lc_logs/
+langchain.db
+
+# Local tools or test artifacts
+__tests__/
+test-results/
+# Ignore Python virtual environments
+bitch/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+#g
+# Ignore data files
+*.docx
+*.db
+*.sqlite
