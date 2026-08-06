@@ -70,4 +70,4 @@ def insert_documents(collection_name: str, chunks: list[Document], embedding_mod
         api_key=QDRANT_API_KEY,
         collection_name=collection_name
     )
-    print(f"📥 Inserted {len(chunks)} chunks into {collection_name}")
+    print(f"Inserted {len(chunks)} chunks into {collection_name}")

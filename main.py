@@ -12,7 +12,6 @@ from Tracing.Tracing import trace_block, traceable_fn
 
 load_dotenv()
 
-# Activate LangSmith tracing if ENV is set
 os.environ["LANGCHAIN_TRACING_V2"] = os.getenv("LANGCHAIN_TRACING_V2", "false")
 os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY", "")
 
