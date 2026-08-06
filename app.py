@@ -38,7 +38,7 @@ def main():
     )
     st.title("🤖 JP Morgan HR Policy Assistant")
     st.markdown("""
-        Ask questions about our company HR policies.
+        Ask questions about the company's HR transformation.
     """)
 
     try:
@@ -99,7 +99,7 @@ def main():
                         st.markdown(f"> {doc.page_content.replace(chr(10), chr(10) + '> ')}")
 
 
-    if user_input := st.chat_input("Ask a question about our HR policies..."):
+    if user_input := st.chat_input("Ask a question about HR transformations..."):
         with st.chat_message("user"):
             st.markdown(user_input)
         
