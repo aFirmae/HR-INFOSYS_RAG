@@ -32,11 +32,11 @@ def main():
         st.stop()
 
     st.set_page_config(
-        page_title="JP Morgan HR Policy Assistant",
+        page_title="JP Morgan HR Transformation Assistant",
         page_icon="🤖",
         layout="centered"
     )
-    st.title("🤖 JP Morgan HR Policy Assistant")
+    st.title("🤖 JP Morgan HR Transformation Assistant")
     st.markdown("""
         Ask questions about the company's HR transformation.
     """)
