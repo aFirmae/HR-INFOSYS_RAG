@@ -16,9 +16,6 @@ qdrant_client = QdrantClient(
 )
 
 def get_retriever(index_type: str = "hnsw", k: int = 10):
-    """
-    Returns a retriever for a given Qdrant collection (index_type).
-    """
     collection_name = None
     for name in QDRANT_COLLECTIONS:
         if index_type in name:

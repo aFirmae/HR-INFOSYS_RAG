@@ -18,17 +18,17 @@ os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY", "")
 
 @traceable_fn("run_ingestion_pipeline")
 def run_ingestion_pipeline(folder_path: str):
-    print("🚀 Starting document ingestion pipeline...")
+    print("Starting document ingestion pipeline...")
 
     # Load PDFs (page-by-page)
     loader = PDFStreamingLoader(folder_path)
     documents = list(loader.stream_documents())
-    print(f"📄 Loaded {len(documents)} pages from folder: {folder_path}")
+    print(f"Loaded {len(documents)} pages from folder: {folder_path}")
 
     # Chunking
     chunker = DocumentChunker(chunk_size=512, chunk_overlap=64)
     chunks = chunker.chunk_documents(documents)
-    print(f"🔗 Chunked into {len(chunks)} chunks.")
+    print(f"Chunked into {len(chunks)} chunks.")
 
     vector_size = 384
 

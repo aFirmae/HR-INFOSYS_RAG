@@ -8,10 +8,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class PDFStreamingLoader:
-    """
-    Streams individual pages from all PDFs in a folder using PdfReader (more robust than PyPDFLoader).
-    Adds rich metadata to each page.
-    """
+
     def __init__(self, folder_path: str):
         self.folder_path = folder_path
 
@@ -26,23 +23,23 @@ class PDFStreamingLoader:
                 continue
 
             full_path = os.path.join(self.folder_path, filename)
-            logger.info(f"📄 Processing: {filename}")
+            logger.info(f"Processing: {filename}")
 
             try:
                 reader = PdfReader(full_path)
             except Exception as e:
-                logger.error(f"❌ Failed to open PDF {filename}: {e}")
+                logger.error(f"Failed to open PDF {filename}: {e}")
                 continue
 
             if not reader.pages:
-                logger.warning(f"⚠️ No pages found in PDF: {filename}")
+                logger.warning(f"No pages found in PDF: {filename}")
                 continue
 
             for i, page in enumerate(reader.pages):
                 try:
                     text = page.extract_text()
                 except Exception as e:
-                    logger.warning(f"⚠️ Could not extract text from page {i+1} of {filename}: {e}")
+                    logger.warning(f"Could not extract text from page {i+1} of {filename}: {e}")
                     continue
 
                 if not text or not text.strip():

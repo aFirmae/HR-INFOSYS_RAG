@@ -59,13 +59,13 @@ class BM25Retriever:
 # Usage example
 # =====================
 if __name__ == "__main__":
-    folder_path = r"D:\AGENTIC_AI\PROJECTS\hr-assistant\data"
+    folder_path = r"/User/nilashis/JP_Morgan_RAG/"
     all_docs = load_pdfs_from_folder(folder_path)
     print(f"Loaded {len(all_docs)} chunks from PDFs.")
 
     bm25_retriever = BM25Retriever(all_docs)
 
-    query = "When do I get paid each month?"
+    query = "Top HR Priorities"
     results = bm25_retriever.get_relevant_documents(query, k=10)
 
     for i, doc in enumerate(results, 1):

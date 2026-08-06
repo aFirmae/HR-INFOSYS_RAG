@@ -9,13 +9,9 @@ import sys
 import os
 from glob import glob
 
-# Add parent directory to import config
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from config import QDRANT_HOST, QDRANT_API_KEY, QDRANT_COLLECTIONS, EMBED_MODEL
 
-# -----------------------------
-# Load all benchmark JSONs from folder
-# -----------------------------
 def load_all_benchmarks(folder_path: str) -> List[Dict[str, str]]:
     all_data = []
     json_files = glob(os.path.join(folder_path, "*.json"))
@@ -25,31 +21,22 @@ def load_all_benchmarks(folder_path: str) -> List[Dict[str, str]]:
             all_data.extend(data)
     return all_data
 
-# -----------------------------
-# Initialize embedding model
-# -----------------------------
 embedding_model = HuggingFaceEmbeddings(
     model_name=EMBED_MODEL or "sentence-transformers/all-MiniLM-L6-v2"
 )
 
-# -----------------------------
-# Initialize Qdrant client
-# -----------------------------
 qdrant_client = QdrantClient(
     url=QDRANT_HOST,
     api_key=QDRANT_API_KEY
 )
 
-# -----------------------------
-# Benchmark function
-# -----------------------------
 def benchmark_retriever(collection_name: str, benchmark_data: List[Dict[str, str]], k: int = 8):
     """
     Benchmarks a dense retriever using Qdrant on response time and average similarity
     among all retrieved chunks.
     Returns overall stats for aggregation.
     """
-    print(f"\n🚀 Benchmarking Collection: {collection_name}")
+    print(f"\nBenchmarking Collection: {collection_name}")
     print("-" * 80)
     
     vectorstore = Qdrant(
@@ -109,7 +96,7 @@ def benchmark_retriever(collection_name: str, benchmark_data: List[Dict[str, str
 # Main
 # -----------------------------
 if __name__ == "__main__":
-    benchmark_folder = r"D:\AGENTIC_AI\PROJECTS\hr-assistant\Benchmark"
+    benchmark_folder = r"/User/nilashis/JP_Morgan_RAG/Benchmark"
     benchmark_data = load_all_benchmarks(benchmark_folder)
     print(f"Loaded {len(benchmark_data)} total benchmark queries from folder '{benchmark_folder}'\n")
 

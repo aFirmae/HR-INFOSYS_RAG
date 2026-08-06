@@ -53,17 +53,16 @@ def create_qdrant_collection(name: str, vector_size: int, distance: str = "Cosin
             )
         )
     else:
-        raise ValueError(f"❌ Invalid index type: {index_type}")
+        raise ValueError(f"Invalid index type: {index_type}")
 
     client.recreate_collection(
         collection_name=name,
         vectors_config=index_config
     )
-    print(f"✅ Created Qdrant collection: {name} ({index_type} index)")
+    print(f"Created Qdrant collection: {name} ({index_type} index)")
 
 
 def insert_documents(collection_name: str, chunks: list[Document], embedding_model):
-    """Insert documents into a Qdrant collection."""
     Qdrant.from_documents(
         documents=chunks,
         embedding=embedding_model,

@@ -66,8 +66,8 @@ def benchmark_hybrid(hybrid: HybridRetrieverOptimal, benchmark_data: List[Dict[s
 # Main
 # -----------------------------
 if __name__ == "__main__":
-    benchmark_folder = r"D:\AGENTIC_AI\PROJECTS\hr-assistant\Benchmark"
-    sparse_folder = r"D:\AGENTIC_AI\PROJECTS\hr-assistant\data"
+    benchmark_folder = r"/User/nilashis/JP_Morgan_RAG/Benchmark"
+    sparse_folder = r"/User/nilashis/JP_Morgan_RAG/data"
 
     benchmark_data = load_all_benchmarks(benchmark_folder)
     print(f"Loaded {len(benchmark_data)} benchmark queries.\n")

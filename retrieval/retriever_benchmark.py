@@ -90,7 +90,7 @@ def benchmark_retriever(collection_name: str, benchmark_data: List[Dict[str, str
 # Main
 # -----------------------------
 if __name__ == "__main__":
-    benchmark_folder = r"D:\AGENTIC_AI\PROJECTS\hr-assistant\Benchmark"
+    benchmark_folder = r"/User/nilashis/JP_Morgan_RAG/Benchmark"
     benchmark_data = load_all_benchmarks(benchmark_folder)
     print(f"Loaded {len(benchmark_data)} total benchmark queries from '{benchmark_folder}'\n")
 
