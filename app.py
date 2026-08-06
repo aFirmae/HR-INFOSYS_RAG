@@ -72,7 +72,7 @@ def main():
          "ONLY answer based on the provided context from documents.\n"
          "Do NOT use any knowledge outside the provided documents.\n"
          "If the answer is not in the documents, respond that you do not have enough information to answer.\n"
-         "Keep answers concise and professional."),
+         "Keep answers concise, professional, and properly formatted using markdown (e.g., bullet points, bold text)."),
         ("human",
          "Conversation History:\n{chat_history}\n\n"
          "Context from Documents:\n{context}\n\n"
@@ -97,6 +97,13 @@ def main():
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
+            if "sources" in message and message["sources"]:
+                with st.expander("📚 View Sources"):
+                    for i, doc in enumerate(message["sources"]):
+                        source = doc.metadata.get('source', 'Unknown')
+                        page = doc.metadata.get('page_number', 'N/A')
+                        st.markdown(f"**Source {i+1}: {source} (Page {page})**")
+                        st.markdown(f"> {doc.page_content.replace(chr(10), chr(10) + '> ')}")
 
 
     # --- User Input and Response Logic ---
@@ -128,8 +135,19 @@ def main():
             # Display assistant response in chat
             with st.chat_message("assistant"):
                 st.markdown(response)
+                if reranked_docs:
+                    with st.expander("📚 View Sources"):
+                        for i, doc in enumerate(reranked_docs):
+                            source = doc.metadata.get('source', 'Unknown')
+                            page = doc.metadata.get('page_number', 'N/A')
+                            st.markdown(f"**Source {i+1}: {source} (Page {page})**")
+                            st.markdown(f"> {doc.page_content.replace(chr(10), chr(10) + '> ')}")
             
-            st.session_state.messages.append({"role": "assistant", "content": response})
+            st.session_state.messages.append({
+                "role": "assistant", 
+                "content": response,
+                "sources": reranked_docs
+            })
 
             # Note: The LLMChain automatically handles saving the context to memory.
             # The manual `memory.save_context` call is not needed when using the chain's `predict` method.
